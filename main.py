@@ -1,16 +1,19 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+import pandas as pd
+from data_visualization import regplot
+from linear_regression import LinearRegression
 
 
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    print_hi('PyCharm')
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    # Preparing data for our model
+    raw_data = pd.read_csv('real_estate_price_size.csv')
+    size = raw_data['size'].values.tolist()
+    price = raw_data['price'].values.tolist()
+
+    # Linear Regression model
+    lr = LinearRegression()
+    alpha, beta = lr.train(size, price)
+
+    # Results
+    regplot(size, price, 2390, 327)
+    print(f"r_squared = {lr.r_squared(size, price)}")
