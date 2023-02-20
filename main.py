@@ -15,5 +15,5 @@ if __name__ == '__main__':
     alpha, beta = lr.train(size, price)
 
     # Results
-    regplot(size, price, 2390, 327)
+    regplot(size, price, alpha, beta)
     print(f"r_squared = {lr.r_squared(size, price)}")
